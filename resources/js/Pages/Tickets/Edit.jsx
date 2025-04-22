@@ -1,5 +1,8 @@
 import InputError from "@/Components/InputError";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayoutUser from "@/Layouts/AuthenticatedLayoutUser";
+
+
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, ticket }) {
@@ -13,8 +16,10 @@ export default function Create({ auth, ticket }) {
     e.preventDefault();
     put(route('tickets.update', ticket.id));
   }
+  const Layout = auth.user.role === 'admin' ? AuthenticatedLayout : AuthenticatedLayoutUser;
+
   return (
-    <AuthenticatedLayout
+    <Layout
       user={auth.user}
       header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">
         Edit
@@ -118,6 +123,6 @@ export default function Create({ auth, ticket }) {
           </div>
         </div>
       </div>
-    </AuthenticatedLayout>
+    </Layout>
   )
 }

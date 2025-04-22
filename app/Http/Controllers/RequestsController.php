@@ -8,6 +8,7 @@ use App\Http\Resources\RequestsResource;
 use App\Models\requests;
 use App\Models\tickets;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class RequestsController extends Controller
@@ -25,7 +26,12 @@ class RequestsController extends Controller
         if (request("status")) {
             $query->where("status", request("status"));
         }
-
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            $requests = $query->get(); // admin voit tout
+        } else {
+            $requests = $query->where('user_id', $user->id)->get(); // user voit ses tickets
+        }
         $requests = $query->paginate(10)->onEachSide(1);
         return Inertia::render('Requests/Index', [
             'requests' => RequestsResource::collection($requests),

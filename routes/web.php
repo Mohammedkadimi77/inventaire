@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/dashboard', fn () => Inertia::render('Dashboard'))->name('admin.dashboard');
 
     // Dashboard utilisateur
-    Route::get('/user/dashboard', fn () => Inertia::render('Dashboard_user'))->name('user.dashboard');
+    Route::get('/user/dashboard', fn () => Inertia::render('Dashboard'))->name('user.dashboard');
 
     // Autres ressources
     Route::resource('tickets', TicketsController::class);

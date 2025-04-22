@@ -1,5 +1,6 @@
 import InputError from "@/Components/InputError";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayoutUser from "@/Layouts/AuthenticatedLayoutUser";
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Create({ auth, request }) {
@@ -13,8 +14,9 @@ export default function Create({ auth, request }) {
     e.preventDefault();
     put(route('requests.update', request.id));
   }
+  const Layout = auth.user.role === 'admin' ? AuthenticatedLayout : AuthenticatedLayoutUser;
   return (
-    <AuthenticatedLayout
+    <Layout
       user={auth.user}
       header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">
         Modifier la demande
@@ -93,15 +95,8 @@ export default function Create({ auth, request }) {
                   <InputError message={errors.status} className="mt-2" />
                 </div>
 
-
-
-
-
-
-
                 <div className="flex justify-end gap-4">
                   <Link
-
                     href={route('requests.index')}
                     className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
                   >
@@ -119,6 +114,6 @@ export default function Create({ auth, request }) {
           </div>
         </div>
       </div>
-    </AuthenticatedLayout>
+    </Layout>
   )
 }

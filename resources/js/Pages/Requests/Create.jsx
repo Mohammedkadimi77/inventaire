@@ -1,5 +1,6 @@
 import InputError from "@/Components/InputError";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedLayoutUser from "@/Layouts/AuthenticatedLayoutUser";
 import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function Create({ auth }) {
@@ -14,8 +15,9 @@ export default function Create({ auth }) {
     e.preventDefault();
     post(route('requests.store'));
   }
+  const Layout = auth.user.role === 'admin' ? AuthenticatedLayout : AuthenticatedLayoutUser;
   return (
-    <AuthenticatedLayout
+    <Layout
       user={auth.user}
       header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">
         Créer une nouvelle demande
@@ -117,6 +119,6 @@ export default function Create({ auth }) {
           </div>
         </div>
       </div>
-    </AuthenticatedLayout>
+    </Layout>
   )
 }

@@ -48,7 +48,9 @@ class TicketsController extends Controller
 
     public function create()
     {
-        return Inertia('Tickets/Create');
+        return Inertia('Tickets/Create', [
+            'role' => Auth::user()->role,
+        ]);
     }
 
     public function store(StoreTicketRequest $request)
@@ -74,6 +76,7 @@ class TicketsController extends Controller
     {
         return Inertia('Tickets/Edit', [
             'ticket' => new TicketsResource($ticket),
+            'role' => Auth::user()->role,
         ]);
     }
 
