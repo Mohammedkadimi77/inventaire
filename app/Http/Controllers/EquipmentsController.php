@@ -29,6 +29,7 @@ class EquipmentsController extends Controller
         if (request("status")) {
             $query->where("status", request("status"));
         }
+        
 
         $equipments = $query->paginate(10)->onEachSide(1);
         return Inertia::render('Equipments/Index', [

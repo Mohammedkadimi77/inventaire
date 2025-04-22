@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTicketRequest;
 use App\Http\Resources\TicketsResource;
 use App\Models\tickets;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class TicketsController extends Controller
@@ -30,6 +31,13 @@ class TicketsController extends Controller
         if ($request->has('status')) {
             $query->where('status', $request->status);
         }
+    $user = Auth::user();
+
+    if ($user->role === 'admin') {
+        $tickets = $query->get(); // admin voit tout
+    } else {
+        $tickets = $query->where('user_id', $user->id)->get(); // user voit ses tickets
+    }
 
         $tickets = $query->paginate(10)->onEachSide(1);
         return Inertia::render('Tickets/Index', [

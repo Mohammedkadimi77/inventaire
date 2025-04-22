@@ -107,9 +107,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                       >
                         <option value="">Tous</option>
                         <option value="admin">Admin</option>
-                        <option value="agent">Agent</option>
-                        <option value="technicien">Technicien</option>
-                        <option value="utilisateur">Utilisateur</option>
+                        <option value="user">Utilisateur</option>
                       </SelectInput>
                     </th>
 

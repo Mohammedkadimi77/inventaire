@@ -31,12 +31,6 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Dashboard
                                 </NavLink>
                                 <NavLink
-                                    href={route('equipments.index')}
-                                    active={route().current('equipments.index')}
-                                >
-                                    Equipments
-                                </NavLink>
-                                <NavLink
                                     href={route('tickets.index')}
                                     active={route().current('tickets.index')}
                                 >
@@ -48,12 +42,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Requests
                                 </NavLink>
-                                <NavLink
-                                    href={route('users.index')}
-                                    active={route().current('users.index')}
-                                >
-                                    Utilisateurs
-                                </NavLink>
+
                             </div>
                         </div>
 
@@ -198,6 +187,3 @@ export default function AuthenticatedLayout({ header, children }) {
         </div>
     );
 }
-
-
-
