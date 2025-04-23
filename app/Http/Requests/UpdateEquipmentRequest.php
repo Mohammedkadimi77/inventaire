@@ -25,7 +25,7 @@ class UpdateEquipmentRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'type' => 'required',
-            'serial_number' => 'required|numeric',
+            'serial_number' => 'required|string|max:255',
             'status' => ['required', Rule::in(['disponible', 'affecté', 'en_maintenance', 'hors_service', 'stock'])],
             'location' => 'required',
             'assigned_to' => 'required',

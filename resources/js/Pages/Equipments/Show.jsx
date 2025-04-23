@@ -1,7 +1,13 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 
 export default function Show({ auth, equipment }) {
+  const handleDelete = (equipment) => {
+    if (!window.confirm('Voulez-vous vraiment supprimer cet équipement ?')) {
+      return;
+    }
+    router.delete(route('equipments.destroy', equipment.id));
+  };
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -19,10 +25,10 @@ export default function Show({ auth, equipment }) {
                 {equipment.name}
               </h1>
               <div className="flex gap-4">
-                <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                <Link href={route('equipments.edit', equipment.id)} className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
                   Modifier
-                </button>
-                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                </Link>
+                  <button onClick={() => handleDelete(equipment)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                   Supprimer
                 </button>
               </div>

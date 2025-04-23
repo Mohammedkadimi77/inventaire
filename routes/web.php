@@ -21,7 +21,13 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::redirect('/', '/dashboard');
+
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about');
+
+
+Route::redirect('/', '/home');
 
 Route::get('/home', function(){
     return Inertia::render('Home');

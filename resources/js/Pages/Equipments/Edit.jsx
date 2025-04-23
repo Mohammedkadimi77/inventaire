@@ -9,7 +9,7 @@ export default function Create ({ auth, equipment }) {
     serial_number: equipment.serial_number || '',
     status: equipment.status || '',
     location: equipment.location || '',
-    assigned_to: equipment.assigned_to || '',
+    assigned_to: equipment.assigned_to || '' || null,
   })
   const handleSubmit = (e) => {
     e.preventDefault();

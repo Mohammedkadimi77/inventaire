@@ -32,9 +32,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('user1234'),
             'role' => 'user',
         ]);
-        equipments::factory(100)->create();
-        requests::factory(90)->create();
-        tickets::factory(100)->create();
+        // equipments::factory(100)->create();
+        // requests::factory(90)->create();
+        // tickets::factory(100)->create();
 
     }
 }
